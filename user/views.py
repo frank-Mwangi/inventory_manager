@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm
 
 # Create your views here.
 
@@ -7,12 +8,12 @@ from django.contrib.auth.forms import UserCreationForm
 def register(request):
     """Method for registering new users"""
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('dashboard-index')
     else:
-        form = UserCreationForm()
+        form = CreateUserForm()
     context = {
         'form':form
     }
