@@ -1,6 +1,10 @@
 {% extends 'partials/base.html' %} {% block title %} Home Page {% endblock %}
 <!-- Gap -->
-{% block content %} {% include 'partials/hero.html' %}
+{% block content %}
+<!-- hr -->
+{% if user.is_authenticated and user.is_staff and user.is_superuser %}
+<!-- hr -->
+{% include 'partials/hero.html' %}
 <!--Graphs-->
 <div class="container">
   <div class="row my-5">
@@ -8,30 +12,30 @@
       <div class="bg-white">
         <canvas id="myChart1" width="400" height="300"></canvas>
         <script>
-          var ctx = document.getElementById("myChart1").getContext("2d");
+          var ctx = document.getElementById('myChart1').getContext('2d');
           var myChart1 = new Chart(ctx, {
-            type: "pie",
+            type: 'pie',
             data: {
-              labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+              labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
               datasets: [
                 {
-                  label: "Products",
+                  label: 'Products',
                   data: [12, 19, 3, 5, 2, 3],
                   backgroundColor: [
-                    "rgba(255, 99, 132, 1)",
-                    "rgba(54, 162, 235, 1)",
-                    "rgba(255, 206, 86, 1)",
-                    "rgba(75, 192, 192, 1)",
-                    "rgba(153, 102, 255, 1)",
-                    "rgba(255, 159, 64, 1)",
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
                   ],
                   borderColor: [
-                    "rgba(255, 99, 132, 1)",
-                    "rgba(54, 162, 235, 1)",
-                    "rgba(255, 206, 86, 1)",
-                    "rgba(75, 192, 192, 1)",
-                    "rgba(153, 102, 255, 1)",
-                    "rgba(255, 159, 64, 1)",
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
                   ],
                   borderWidth: 1,
                 },
@@ -56,30 +60,30 @@
       <div class="bg-white">
         <canvas id="myChart" width="400" height="300"></canvas>
         <script>
-          var ctx = document.getElementById("myChart").getContext("2d");
+          var ctx = document.getElementById('myChart').getContext('2d');
           var myChart = new Chart(ctx, {
-            type: "bar",
+            type: 'bar',
             data: {
-              labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+              labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
               datasets: [
                 {
-                  label: "Products",
+                  label: 'Products',
                   data: [12, 19, 3, 5, 2, 3],
                   backgroundColor: [
-                    "rgba(255, 99, 132, 1)",
-                    "rgba(54, 162, 235, 1)",
-                    "rgba(255, 206, 86, 1)",
-                    "rgba(75, 192, 192, 1)",
-                    "rgba(153, 102, 255, 1)",
-                    "rgba(255, 159, 64, 1)",
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
                   ],
                   borderColor: [
-                    "rgba(255, 99, 132, 1)",
-                    "rgba(54, 162, 235, 1)",
-                    "rgba(255, 206, 86, 1)",
-                    "rgba(75, 192, 192, 1)",
-                    "rgba(153, 102, 255, 1)",
-                    "rgba(255, 159, 64, 1)",
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
                   ],
                   borderWidth: 1,
                 },
@@ -103,4 +107,6 @@
   </div>
 </div>
 <!--End Graphs-->
+{% else %} {% include 'dashboard/staff_index.html'%} {% endif %}
+<!-- hr -->
 {% endblock %}
