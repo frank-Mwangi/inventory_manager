@@ -1,5 +1,7 @@
 {% extends 'partials/base.html' %} {% block title %}Products Page{% endblock %}
 <!-- Gap -->
+{% load crispy_forms_tags %}
+<!-- gap -->
 {% block content%} {% include 'partials/hero.html' %}
 <!--Table-->
 <div class="container">
@@ -8,32 +10,10 @@
       <div class="border bg-white p-3">
         <h4>Add Products</h4>
         <hr />
-        <form action="">
-          <div class="form-group">
-            <label for="exampleInputEmail1">Name</label>
-            <input
-              type="email"
-              class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
-            />
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Quantity</label>
-            <input
-              type="password"
-              class="form-control"
-              id="exampleInputPassword1"
-            />
-          </div>
-          <div class="form-group">
-            <label for="inputState">Category</label>
-            <select id="inputState" class="form-control">
-              <option selected>Choose...</option>
-              <option>...</option>
-            </select>
-          </div>
-
+        <form method="POST">
+          {% csrf_token %}
+          <!-- hr -->
+          {{ form|crispy }}
           <input
             class="btn btn-success btn-block"
             type="submit"
