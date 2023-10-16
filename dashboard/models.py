@@ -8,7 +8,7 @@ CATEGORY = (
     ('Food', 'Food'),
 )
 class Product(models.Model):
-    """The Product class"""
+    """The Product model as it appears in database"""
     name = models.CharField(max_length=100, null=True)
     category = models.CharField(max_length=20, choices=CATEGORY, null=True)
     quantity = models.PositiveIntegerField(null=True)
@@ -17,7 +17,7 @@ class Product(models.Model):
         return f'{self.name} - {self.quantity}'
 
 class Order(models.Model):
-    """The Order class"""
+    """The Order model in storage"""
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True)
     staff = models.ForeignKey(User, models.CASCADE, null=True)
     order_quantity = models.PositiveIntegerField(null=True)

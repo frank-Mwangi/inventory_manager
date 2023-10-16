@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from .models import Product
 
 # Create your views here.
 @login_required
@@ -13,7 +14,13 @@ def staff(request):
 
 @login_required
 def product(request):
-    return render(request, 'dashboard/product.html')
+    items = Product.objects.all()
+    # alternatively, use SQL queries like so:
+    # items = Product.objects.raw('SELECT * FROM dashboard_product')
+    context = {
+        'items': items,
+    }
+    return render(request, 'dashboard/product.html', context)
 
 @login_required
 def order(request):
