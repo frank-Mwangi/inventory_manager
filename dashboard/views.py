@@ -16,6 +16,8 @@ def index(request):
             instance = form.save(commit=False)
             instance.staff = request.user
             instance.save()
+            order_product = form.cleaned_data.get('product')
+            messages.success(request, f'Order for {order_product} successfully created')
             return redirect('dashboard-index')
     else:
         form = OrderForm()
